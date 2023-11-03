@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TO Do App</title>
+</head>
+<body>
+    <h1>TASK LIST</h1>
+    <P>Add task to your list by trying to the right and pressing enter.You may then view pending tasks below.</P>
+    <div id="inputdiv">
+        <input type="text" id="input" placeholder="Write something.."/>
+        <button id="btn">Submit</button>
+    </div><br>
+    <div id="outdiv"></div>
+   <script>    
+let inputtask=document.getElementById('input');
+let btn=document.getElementById('btn');
+let outputtask=document.getElementById('outdiv');
+btn.addEventListener('click',()=>{
+    if(inputtask.value!=''){
+        addtask();
+    }
+    else{
+        alert("Add some text here");
+    }
+})
+function addtask(){
+    let tempdiv=document.createElement('div');
+    let showbtn=document.createElement('button');
+    showbtn.innerText=inputtask.value;
+    let markbtn=document.createElement('button');
+    markbtn.innerHTML="&check;";
+    let deletebtn=document.createElement('button');
+    deletebtn.innerHTML="&cross;";
+    tempdiv.append(showbtn,markbtn,deletebtn);
+    outputtask.append(tempdiv);
+    markbtn.addEventListener('click',()=>{
+        if(showbtn.value==''){
+            markbtn.style.color="blue";
+        }
+    })
+    deletebtn.addEventListener('click',(e)=>{
+        e.target.parentElement.remove();
+    }) 
+    showbtn.style.margin="10px";
+}
+    </script>
+</body>
+</html>
